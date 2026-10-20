@@ -1,22 +1,27 @@
-<<<<<<< HEAD
-=======
-board = [["0"]*9 for n in range(9)]
-print (board)
+import constraints
+
+b = [
+    ["5","3","0","0","7","0","0","0","0"],
+    ["6","0","0","1","9","5","0","0","0"],
+    ["0","9","8","0","0","0","0","6","0"],
+    ["8","0","0","0","6","0","0","0","3"],
+    ["4","0","0","8","0","3","0","0","1"],
+    ["7","0","0","0","2","0","0","0","6"],
+    ["0","6","0","0","0","0","2","8","0"],
+    ["0","0","0","4","1","9","0","0","5"],
+    ["0","0","0","0","8","0","0","7","9"]
+]
 
 solution = []
+possible_values=set(range(1,10))
 
-def checkFilled(board):
-    for row in board:
-        for column in row:
-            if column == "0":
-                return False
-    return True
 
-def backtracking(board):
-    if checkFilled(board):
+def backtracking(board,domain):
+    if constraints.checkFilled(board):
         solution.append(board[:])
         return
-    for row in board:
-        for column in row:
->>>>>>> df4c40e0c0b0a126d6d5f347d2563ad57d85e3f5
+
+    for row_index,row in enumerate(board):
+        for col_index,col in enumerate(row):
+            pass
 
