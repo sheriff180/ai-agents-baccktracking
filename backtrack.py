@@ -20,7 +20,7 @@ def backtracking(board,domain):
     
     if constraints.checkFilled(board):
         solution.append(board[:])
-        print(solution)
+        
         return True
 
     for row_index,row in enumerate(board):
@@ -31,13 +31,13 @@ def backtracking(board,domain):
                 for value in domain:
                     board[row_index][col_index]=value   
                     if constraints.master_check(board):
-                        print(board)
+
                         if backtracking(board,domain):
-                            break
-                    else:
-                        continue
-                
+                            return True
+                                        
                     board[row_index][col_index]="0"
+                return False
                 
     
 backtracking(b,possible_values)
+print(solution[0])
