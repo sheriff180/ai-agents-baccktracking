@@ -13,15 +13,31 @@ b = [
 ]
 
 solution = []
-possible_values=set(range(1,10))
+possible_values=["1","2","3","4","5","6","7","8","9"]
 
 
 def backtracking(board,domain):
+    
     if constraints.checkFilled(board):
         solution.append(board[:])
-        return
+        print(solution)
+        return True
 
     for row_index,row in enumerate(board):
         for col_index,col in enumerate(row):
-            pass
 
+            if board[row_index][col_index] == "0":
+
+                for value in domain:
+                    board[row_index][col_index]=value   
+                    if constraints.master_check(board):
+                        print(board)
+                        if backtracking(board,domain):
+                            break
+                    else:
+                        continue
+                
+                    board[row_index][col_index]="0"
+                
+    
+backtracking(b,possible_values)
