@@ -45,3 +45,6 @@ def isDupRoom(board, row, column, choice):
                 return True
 
     return False
+
+def isValid(board, row, column, choice):
+    return not isDupRow(board, row, column, choice) and not isDupCol(board, row, column, choice) and not isDupRoom(board, row, column, choice)
