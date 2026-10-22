@@ -1,14 +1,4 @@
-b = [
-    ["5","3","0","0","7","0","0","0","0"],
-    ["6","0","0","1","9","5","0","0","0"],
-    ["0","9","8","0","0","0","0","6","0"],
-    ["8","0","0","0","6","0","0","0","3"],
-    ["4","0","0","8","0","3","0","0","1"],
-    ["7","0","0","0","2","0","0","0","6"],
-    ["0","6","0","0","0","0","2","8","0"],
-    ["0","0","0","4","1","9","0","0","5"],
-    ["0","0","0","0","8","0","0","7","9"]
-]
+# An attempt at an upgrade (but opinionated) contraints.py
 
 # Check row for duplicate number
 def isDupRow(board, row, column, choice):
@@ -32,3 +22,26 @@ def isDupCol(board, row, column, choice):
 
     return False
 
+# Check sub-grid for duplicate number
+"""
+Note here that the 'starting cell' is referred to here as a 'door' and the
+entire sub-grid is referred to as 'room' as it is my mental model right now.
+
+We offset here the door to explore the rest of the room. If the room does not
+already contain the chosen number, then no duplicate is found. Otherwise,
+it returns true (since a duplicate is found).
+"""
+def isDupRoom(board, row, column, choice):
+    # First we find the coordinate of the "door"
+    door_row = (row//3)*3
+    door_col = (column//3)*3
+
+    for r in range(3):
+        for c in range(3):
+            if (door_row + r) == row and (door_col + c) == column:
+                continue
+
+            if board[door_row + r][door_col + c] == choice:
+                return True
+
+    return False
