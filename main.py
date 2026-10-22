@@ -2,6 +2,7 @@ import sys
 import time
 import backtrack
 import constraints
+import bctrck
 
 # The board that will be filled with the Sudoku puzzle
 board = []
@@ -73,7 +74,7 @@ for r in range(9):
             empty_cells.append((r,c))
 
 start_time = time.time()
-backtrack.backtracking_new(board)
+bctrck.backtrack(board, empty_cells)
 if constraints.master_check(board) and constraints.checkFilled(board):
     print("Found a solution ya stinky bum!")
     print("Here it is!")
