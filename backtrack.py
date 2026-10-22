@@ -48,15 +48,6 @@ def backtracking(board,domain):
                 num_backtrack += 1
                 return False
                  
-start_time = time.time()
 
-backtracking(b,possible_values)
-
-exec_t = time.time() - start_time
-
-print(exec_t)
-print(num_backtrack)
-print(search_step)
-
-
-
+def backtracking_new(board):
+    backtracking(board,possible_values)

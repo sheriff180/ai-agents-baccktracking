@@ -1,4 +1,9 @@
 import sys
+import time
+import backtrack
+import constraints
+
+board = []
 
 # Check appropriate amount of arguments first
 if len(sys.argv) < 2 or len(sys.argv) > 3:
@@ -42,3 +47,30 @@ elif len(sys.argv) == 2:
     if f_name1 == "" or ext1 != "txt":
         print("Invalid input, must provide file name and extension (.txt).")
         sys.exit(1)
+
+
+# Looks up and open file
+try:
+    with open(arg1, 'r') as file:
+        for i, line in enumerate(file):
+            row = []
+            for c in line:
+                if c.isnumeric():
+                    row.append(c)
+            board.append(row)
+                    
+except FileNotFoundError:
+    print("There is no such file.")
+    sys.exit(1)
+
+start_time = time.time()
+backtrack.backtracking_new(board)
+if constraints.master_check(board) and constraints.checkFilled(board):
+    print("Found a solution ya stinky bum!")
+    print("Here it is!")
+    print(board)
+else:
+    print("What the fuck is that?")
+
+
+print(time.time() - start_time)
