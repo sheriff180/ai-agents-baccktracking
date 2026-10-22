@@ -3,7 +3,10 @@ import time
 import backtrack
 import constraints
 
+# The board that will be filled with the Sudoku puzzle
 board = []
+# The list that will be filled with the target cells' coordinates
+empty_cells = []
 
 # Check appropriate amount of arguments first
 if len(sys.argv) < 2 or len(sys.argv) > 3:
@@ -62,6 +65,12 @@ try:
 except FileNotFoundError:
     print("There is no such file.")
     sys.exit(1)
+
+# We store the empty cells foudn in board list into empty_cells list
+for r in range(9):
+    for c in range(9):
+        if board[r][c] == "0":
+            empty_cells.append((r,c))
 
 start_time = time.time()
 backtrack.backtracking_new(board)
