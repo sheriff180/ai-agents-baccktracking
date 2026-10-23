@@ -84,3 +84,22 @@ else:
 
 
 print(time.time() - start_time)
+
+if len(sys.argv) == 2:
+    try:
+        with open("out.txt", "w") as file:
+            for row in board:
+                file.write(' '.join(row) + '\n')
+            sys.exit(0)
+    except OSError:
+        print("File already exists or unable to write to file.")
+        sys.exit(1)
+else:
+    try:
+        with open(arg2, "w") as file:
+            for row in board:
+                file.write(' '.join(row) + '\n')
+            sys.exit(0)
+    except OSError:
+        print("File already exists or unable to write to file.")
+        sys.exit(1)
